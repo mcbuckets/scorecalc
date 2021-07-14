@@ -7,10 +7,13 @@ namespace App\ScoreCalculator\Infrastructure\Web\Controller\Rest\v1;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
+use OpenApi\Annotations as OA;
+use Nelmio\ApiDocBundle\Annotation\Model;
 
 use App\ScoreCalculator\Domain\Model\TermScoreRepositoryInterface;
 use App\ScoreCalculator\Domain\Model\TermScore;
 use App\ScoreCalculator\Application\TermScoreCalculatorInterface;
+use App\ScoreCalculator\Domain\TermScoreResultValue;
 
 final class GitHubTermScoreController extends AbstractController
 {
@@ -28,6 +31,20 @@ final class GitHubTermScoreController extends AbstractController
          ],
         methods: ['GET', 'HEAD'],
     )]
+    /**
+     * @OA\Response(
+     *     response=200,
+     *     description="Returns the term GitHub score",
+     *      @Model(type=TermScoreResultValue::class)
+     * )
+     * @OA\Parameter(
+     *     name="term",
+     *     in="path",
+     *     description="Calculate results for",
+     *     @OA\Schema(type="string")
+     * )
+     * @OA\Tag(name="GitHub score")
+     */
     public function getTermScore(string $term): JsonResponse
     {
         $termScore = $this->termScoreRepository->findOneByTerm($term);
