@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
 
-final class ExceptionListener
+final class SymfonyExceptionListener
 {
     public function onKernelException(ExceptionEvent $event)
     {
