@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="https://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\ScoreCalculator\Domain\Model\TermScore" table="term_scores">
+        <indexes>
+            <index name="term_idx" columns="term"/>
+        </indexes>
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+            <sequence-generator sequence-name="tablename_seq" allocation-size="100" initial-value="1" />
+        </id>
+
+        <field name="term" column="term" type="string" length="256" nullable="false" unique="true" />
+        <field name="score" column="score" type="float" />
+    </entity>
+
+</doctrine-mapping>
