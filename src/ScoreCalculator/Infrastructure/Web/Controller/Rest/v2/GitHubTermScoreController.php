@@ -20,7 +20,9 @@ final class GitHubTermScoreController extends AbstractController
 
     public function __construct(
         private TermScoreCalculatorInterface $termScoreCalculator,
-    ){}
+    )
+    {
+    }
 
     /**
      * @param FilesystemAdapter $githubScorecalcCache
@@ -30,7 +32,7 @@ final class GitHubTermScoreController extends AbstractController
         name: 'scorecalc_api_V2_term_score_calculator_github_get_score',
         requirements: [
             '_format' => 'json',
-         ],
+        ],
         methods: ['GET', 'HEAD'],
     )]
     public function getTermScore(string $term, CacheInterface $githubScorecalcCache): JsonResponse
@@ -38,6 +40,7 @@ final class GitHubTermScoreController extends AbstractController
         $cacheResult = $githubScorecalcCache->get($term, function (ItemInterface $item) use ($term, $githubScorecalcCache) {
             $termScoreResultValue = $this->termScoreCalculator->calculateScoreForTerm($term);
             $termScore = TermScore::fromTermScoreResultValue($termScoreResultValue);
+
             $item->expiresAt((new DateTimeImmutable())->modify('+5 hours'));
 
             return $termScore->asArray();
