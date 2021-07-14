@@ -12,9 +12,8 @@ services:
       retries: 3
       start_period: 30s
     volumes:
-      - .:/srv/app:rw,cached
-    links:
-      - redis
+      - ./:/srv/app/
+      - ./.docker/data/db:/etc/app/db
     environment:
       APP_ENV: dev
   nginx:
@@ -24,12 +23,6 @@ services:
       - "80:80"
     volumes:
       - ./.docker/nginx/scorecalc.conf:/etc/nginx/conf.d/default.conf:ro
-      - .:/srv/app:ro
+      - ./:/srv/app
     depends_on:
       - php
-  redis:
-    image: redis:alpine
-    ports:
-      - "6379:6379"
-    volumes:
-      - ./.docker/data/redis:/data/redis
