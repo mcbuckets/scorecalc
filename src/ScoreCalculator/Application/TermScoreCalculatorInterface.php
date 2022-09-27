@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\ScoreCalculator\Application;
 
-use App\ScoreCalculator\Domain\TermScoreResultValue;
+use App\ScoreCalculator\Domain\VO\TermScoreResultValue;
 
 interface TermScoreCalculatorInterface
 {

@@ -5,14 +5,11 @@ declare(strict_types=1);
 namespace App\ScoreCalculator\Domain\Model;
 
 use Assert\Assertion;
-use JetBrains\PhpStorm\ArrayShape;
 
-use App\ScoreCalculator\Domain\TermScoreResultValue;
+use App\ScoreCalculator\Domain\VO\TermScoreResultValue;
 
 final class TermScore
 {
-    private int $id;
-
     public function __construct(
         private string $term,
         private float $score,
@@ -22,17 +19,12 @@ final class TermScore
         Assertion::lessOrEqualThan($score, 10, '$score should be <= 10');
     }
 
-    public function setId(int $id): void
-    {
-        $this->id = $id;
-    }
-
-    public function getTerm(): string
+    public function term(): string
     {
         return $this->term;
     }
 
-    public function getScore(): float
+    public function score(): float
     {
         return $this->score;
     }
@@ -41,13 +33,13 @@ final class TermScore
     public function asArray(): array
     {
         return [
-            'term' => $this->getTerm(),
-            'score' => $this->getScore(),
+            'term' => $this->term(),
+            'score' => $this->score(),
         ];
     }
 
     public static function fromTermScoreResultValue(TermScoreResultValue $termScoreResultValue): self
     {
-        return new self($termScoreResultValue->getTerm(), $termScoreResultValue->getScore());
+        return new self($termScoreResultValue->term(), $termScoreResultValue->score());
     }
 }

@@ -6,8 +6,8 @@ namespace App\Tests\Unit\ScoreCalculator\Application;
 
 use App\ScoreCalculator\Application\TermScoreCalculator;
 use App\ScoreCalculator\Application\TermScoreDataFetcherInterface;
-use App\ScoreCalculator\Domain\TermScoreResultValue;
-use App\ScoreCalculator\Domain\TermScoreValue;
+use App\ScoreCalculator\Domain\VO\TermScoreResultValue;
+use App\ScoreCalculator\Domain\VO\TermScoreValue;
 use PHPUnit\Framework\TestCase;
 
 class TermScoreCalculatorTest extends TestCase

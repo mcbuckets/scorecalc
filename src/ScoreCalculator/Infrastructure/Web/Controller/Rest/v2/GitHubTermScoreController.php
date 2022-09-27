@@ -10,12 +10,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
-use OpenApi\Annotations as OA;
-use Nelmio\ApiDocBundle\Annotation\Model;
 
 use App\ScoreCalculator\Domain\Model\TermScore;
 use App\ScoreCalculator\Application\TermScoreCalculatorInterface;
-use App\ScoreCalculator\Domain\TermScoreResultValue;
+use App\ScoreCalculator\Domain\VO\TermScoreResultValue;
 
 final class GitHubTermScoreController extends AbstractController
 {
@@ -34,20 +32,6 @@ final class GitHubTermScoreController extends AbstractController
         ],
         methods: ['GET', 'HEAD'],
     )]
-    /**
-     * @OA\Response(
-     *     response=200,
-     *     description="Returns the cached term GitHub score",
-     *      @Model(type=TermScoreResultValue::class)
-     * )
-     * @OA\Parameter(
-     *     name="term",
-     *     in="path",
-     *     description="Calculate results for",
-     *     @OA\Schema(type="string")
-     * )
-     * @OA\Tag(name="GitHub score")
-     */
     public function getTermScore(string $term, CacheInterface $githubScorecalcCache): JsonResponse
     {
         $cacheResult = $githubScorecalcCache->get($term, function (ItemInterface $item) use ($term, $githubScorecalcCache) {

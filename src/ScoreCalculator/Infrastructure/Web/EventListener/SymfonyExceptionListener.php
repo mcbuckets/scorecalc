@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Common\Infrastructure\Listener;
+namespace App\ScoreCalculator\Infrastructure\Web\EventListener;
 
 use Throwable;
 

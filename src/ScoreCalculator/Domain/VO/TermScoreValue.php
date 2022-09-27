@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\ScoreCalculator\Domain;
+namespace App\ScoreCalculator\Domain\VO;
 
 final class TermScoreValue
 {
-
     private function __construct(
         private int $positiveScore,
         private int $negativeScore,
@@ -20,17 +19,17 @@ final class TermScoreValue
         return new self($positiveScore, $negativeScore, $sum);
     }
 
-    public function getPositiveScore(): int
+    public function positiveScore(): int
     {
         return $this->positiveScore;
     }
 
-    public function getNegativeScore(): int
+    public function negativeScore(): int
     {
         return $this->negativeScore;
     }
 
-    public function getSum(): int
+    public function sum(): int
     {
         return $this->sum;
     }

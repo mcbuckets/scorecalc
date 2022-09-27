@@ -7,9 +7,6 @@ namespace DoctrineMigrations;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
-/**
- * Auto-generphp bin/console doctrine:migrations:statusated Migration: Please modify to your needs!
- */
 final class Version20210712223902 extends AbstractMigration
 {
     public function getDescription(): string
@@ -28,6 +25,6 @@ final class Version20210712223902 extends AbstractMigration
 
     public function down(Schema $schema): void
     {
-        $schema->dropTable('word_scores');
+        $schema->dropTable('term_scores');
     }
 }
